@@ -3,7 +3,7 @@ import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/sty
 import { Grid, Paper } from "@material-ui/core";
 import Header from "./components/Header";
 import LeftSide from "./components/LeftSide";
-import RightSide from "./components/RightSide";
+import Results from "./components/Results";
 import {green, lightGreen, orange} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +50,7 @@ function App() {
                         <LeftSide/>
                     </Grid>
                     <Grid item xs={7}>
-                        <RightSide/>
+                       <Results/>
                     </Grid>
                 </Grid>
             </div>

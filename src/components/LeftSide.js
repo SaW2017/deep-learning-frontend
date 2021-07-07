@@ -6,7 +6,7 @@ import ImageInformation from "./ImageInformation";
 const LeftSide = () => {
 
     return (
-        <div className="LeftSide">
+        // <div className="LeftSide">
             <Grid
                 container
                 spacing={1}
@@ -29,7 +29,7 @@ const LeftSide = () => {
                     </Paper>
                 </Grid>
             </Grid>
-        </div>
+        // </div>
     );
 }
 
