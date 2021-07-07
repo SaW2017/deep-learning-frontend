@@ -1,14 +1,16 @@
 import "./App.css";
-import Header from "./components/Header";
-import Searchbar from "./components/Searchbar";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Grid, Paper } from "@material-ui/core";
-import AddConcept from "./components/AddConcept";
-import {useState} from "react";
+import Header from "./components/Header";
 import LeftSide from "./components/LeftSide";
-import RightSide from "./components/RightSide"; // for http requests
+import RightSide from "./components/RightSide";
+import {green, lightGreen, orange} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
+    root:{
+        marginBottom: 15,
+        borderRadius: 15,
+    },
     grid:{
         width: '100%',
         margin: '0px'
@@ -16,29 +18,43 @@ const useStyles = makeStyles((theme) => ({
     paper:{
         padding: theme.spacing(2),
         textAlign: 'center',
-        color: theme.palette.text.secondary,
-        background: theme.palette.success.light,
+        color: theme.palette.text.primary,
+        background: theme.palette.primary.main,
     }
 }));
+
+const customTheme = createMuiTheme({
+    palette: {
+        type: 'dark',
+        primary: {
+            main: orange[500],
+        },
+        secondary:{
+            main: green[500]
+        }
+    }
+});
 
 function App() {
     const classes = useStyles();
     return (
-        <div className="App">
-            <Grid container spacing={2} className={classes.grid}>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                        <Header/>
-                    </Paper>
+        <ThemeProvider theme={customTheme}>
+            <div className="App">
+                <Grid container spacing={2} className={classes.grid}>
+                    <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                            <Header/>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={5}>
+                        <LeftSide/>
+                    </Grid>
+                    <Grid item xs={7}>
+                        <RightSide/>
+                    </Grid>
                 </Grid>
-                <Grid item xs={5}>
-                    <LeftSide/>
-                </Grid>
-                <Grid item xs={7}>
-                    <RightSide/>
-                </Grid>
-            </Grid>
-        </div>
+            </div>
+        </ThemeProvider>
     );
 }
 

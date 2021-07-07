@@ -1,22 +1,10 @@
 import {Grid, Paper} from "@material-ui/core";
 import Searchbar from "./Searchbar";
-import {makeStyles} from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-    grid:{
-        width: '100%',
-        margin: '0px'
-    },
-    paper:{
-        padding: theme.spacing(1),
-        textAlign: 'center',  //abändern
-        color: theme.palette.text.secondary,
-        background: theme.palette.success.light,
-    }
-}));
+import ConfidenceSlider from "./ConfidenceSlider";
+import ImageInformation from "./ImageInformation";
 
 const LeftSide = () => {
-    const classes = useStyles();
+
     return (
         <div className="LeftSide">
             <Grid
@@ -26,18 +14,18 @@ const LeftSide = () => {
                 justify="flex-start"
                 alignItems="stretch">
                 <Grid item>
-                    <Paper className={classes.paper}>
+                    <Paper>
                         <Searchbar/>
                     </Paper>
                 </Grid>
                 <Grid item>
-                    <Paper className={classes.paper}>
-                        SLider
+                    <Paper>
+                        <ConfidenceSlider/>
                     </Paper>
                 </Grid>
                 <Grid item>
-                    <Paper className={classes.paper}>
-                        Information
+                    <Paper>
+                        <ImageInformation/>
                     </Paper>
                 </Grid>
             </Grid>

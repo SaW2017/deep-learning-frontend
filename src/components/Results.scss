@@ -1,0 +1,13 @@
+@use "~@material/image-list";
+
+.my-image-list {
+  @include image-list.standard-columns(5);
+}
+
+.mb{
+  margin-bottom: 20px;
+}
+
+.Results{
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
