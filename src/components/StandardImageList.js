@@ -7,7 +7,6 @@ import {useEffect, useState} from "react";
 export default function StandardImageList(props) {
 
     const [fullImageList, setFullImageList] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
 
     // initial get all Images
     useEffect(() => {
@@ -22,7 +21,24 @@ export default function StandardImageList(props) {
 
     return (
         <div>
+            <p>Eingaben:</p>
             <p>{props.filter}</p>
+            <p>{props.confidenceThreshold}</p>
+            <hr/>
+            <p>Gefilterter Liste aus der DB:</p>
+            {fullImageList.filter((val) => {
+                if(props.filter == ""){
+                    return val;
+                }else if (val.name.toLowerCase().includes(props.filter.toLowerCase())){
+                    return val;
+                }
+            }).map((val,key) => {
+                return (
+                    <div>
+                        <p>{val.name}</p>
+                    </div>);
+            })}
+
             <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
                 {itemData.map((item) => (
                     <ImageListItem key={item.img}>
@@ -35,18 +51,6 @@ export default function StandardImageList(props) {
                     </ImageListItem>
                 ))}
             </ImageList>
-            {fullImageList.filter((val) => {
-                if(searchTerm == ""){
-                    return val;
-                }else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())){
-                    return val;
-                }
-            }).map((val,key) => {
-                return (
-                    <div>
-                        <p>{val.name}</p>
-                    </div>);
-            })}
         </div>
 
 );

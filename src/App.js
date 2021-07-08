@@ -41,13 +41,12 @@ const customTheme = createMuiTheme({
 
 function App() {
     const classes = useStyles();
-    const [filter, setFilter]  = useState("TEST");
+    const [filter, setFilter]  = useState("");
     const [confidenceThreshold, setConfidenceThreshold]  = useState();
 
     return (
         <ThemeProvider theme={customTheme}>
             <div className="App">
-                <p>{filter}</p>
                 <Grid container spacing={2} className={classes.grid}>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
@@ -73,14 +72,13 @@ function App() {
                             </Grid>
                             <Grid item>
                                 <Paper>
-                                    <ImageInformation confidenceThreshold={confidenceThreshold}/>
+                                    <ImageInformation />
                                 </Paper>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={7}>
-                        <AddConcept/>
-                       <StandardImageList filter={filter}/>
+                       <StandardImageList filter={filter} confidenceThreshold={confidenceThreshold}/>
                     </Grid>
                 </Grid>
             </div>
