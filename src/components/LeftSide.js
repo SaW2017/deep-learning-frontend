@@ -3,7 +3,7 @@ import Searchbar from "./Searchbar";
 import ConfidenceSlider from "./ConfidenceSlider";
 import ImageInformation from "./ImageInformation";
 
-const LeftSide = () => {
+const LeftSide = (props) => {
 
     return (
         // <div className="LeftSide">
@@ -15,7 +15,8 @@ const LeftSide = () => {
                 alignItems="stretch">
                 <Grid item>
                     <Paper>
-                        <Searchbar/>
+                        <Searchbar changeFilter={props}/>
+                        <p>{props.changeFilter}</p>
                     </Paper>
                 </Grid>
                 <Grid item>

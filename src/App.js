@@ -5,6 +5,9 @@ import Header from "./components/Header";
 import LeftSide from "./components/LeftSide";
 import Results from "./components/Results";
 import {green, lightGreen, orange} from "@material-ui/core/colors";
+import StandardImageList from "./components/StandardImageList";
+import AddConcept from "./components/AddConcept";
+import {useState} from "react";
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -37,9 +40,12 @@ const customTheme = createMuiTheme({
 
 function App() {
     const classes = useStyles();
+    const [filter, setFilter]  = useState("TEST");
+
     return (
         <ThemeProvider theme={customTheme}>
             <div className="App">
+                <p>{filter}</p>
                 <Grid container spacing={2} className={classes.grid}>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
@@ -47,10 +53,11 @@ function App() {
                         </Paper>
                     </Grid>
                     <Grid item xs={5}>
-                        <LeftSide/>
+                        <LeftSide changeFilter={filter => setFilter(filter)}/>
                     </Grid>
                     <Grid item xs={7}>
-                       <Results/>
+                        <AddConcept/>
+                       <StandardImageList filter={filter}/>
                     </Grid>
                 </Grid>
             </div>
