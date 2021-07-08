@@ -24,7 +24,7 @@ const Searchbar = (props) => {
                        type="search"
                        variant="outlined"
                        onChange={event => {
-                            props.changeFilter((event.target.value));
+                            props.setFilter((event.target.value));
                             console.log("Searchbar");
                             console.log(event.target.value);
                         }}

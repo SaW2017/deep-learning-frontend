@@ -4,7 +4,8 @@ import { ImageList } from '@material-ui/core';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import {useEffect, useState} from "react";
 
-export default function StandardImageList({filter}) {
+export default function StandardImageList(props) {
+
     const [fullImageList, setFullImageList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -21,6 +22,7 @@ export default function StandardImageList({filter}) {
 
     return (
         <div>
+            <p>{props.filter}</p>
             <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
                 {itemData.map((item) => (
                     <ImageListItem key={item.img}>

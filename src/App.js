@@ -2,12 +2,13 @@ import "./App.css";
 import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Grid, Paper } from "@material-ui/core";
 import Header from "./components/Header";
-import LeftSide from "./components/LeftSide";
-import Results from "./components/Results";
 import {green, lightGreen, orange} from "@material-ui/core/colors";
 import StandardImageList from "./components/StandardImageList";
 import AddConcept from "./components/AddConcept";
 import {useState} from "react";
+import Searchbar from "./components/Searchbar";
+import ConfidenceSlider from "./components/ConfidenceSlider";
+import ImageInformation from "./components/ImageInformation";
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -41,6 +42,7 @@ const customTheme = createMuiTheme({
 function App() {
     const classes = useStyles();
     const [filter, setFilter]  = useState("TEST");
+    const [confidenceThreshold, setConfidenceThreshold]  = useState();
 
     return (
         <ThemeProvider theme={customTheme}>
@@ -53,7 +55,28 @@ function App() {
                         </Paper>
                     </Grid>
                     <Grid item xs={5}>
-                        <LeftSide changeFilter={filter => setFilter(filter)}/>
+                        <Grid
+                            container
+                            spacing={1}
+                            direction="column"
+                            justify="flex-start"
+                            alignItems="stretch">
+                            <Grid item>
+                                <Paper>
+                                    <Searchbar setFilter={setFilter}/>
+                                </Paper>
+                            </Grid>
+                            <Grid item>
+                                <Paper>
+                                    <ConfidenceSlider setConfidenceThreshold={setConfidenceThreshold}/>
+                                </Paper>
+                            </Grid>
+                            <Grid item>
+                                <Paper>
+                                    <ImageInformation confidenceThreshold={confidenceThreshold}/>
+                                </Paper>
+                            </Grid>
+                        </Grid>
                     </Grid>
                     <Grid item xs={7}>
                         <AddConcept/>
