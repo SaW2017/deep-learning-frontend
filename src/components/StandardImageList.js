@@ -20,40 +20,40 @@ export default function StandardImageList(props) {
     }, [fullImageList])
 
     return (
-        <div>
-            <p>Eingaben:</p>
-            <p>{props.filter}</p>
-            <p>{props.confidenceThreshold}</p>
-            <hr/>
-            <p>Gefilterter Liste aus der DB:</p>
-            {fullImageList.filter((val) => {
-                if(props.filter == ""){
-                    return val;
-                }else if (val.name.toLowerCase().includes(props.filter.toLowerCase())){
-                    return val;
-                }
-            }).map((val,key) => {
-                return (
-                    <div>
-                        <p>{val.name}</p>
-                    </div>);
-            })}
+            <div>
+                <p>Eingaben:</p>
+                <p>Filter: {props.filter}</p>
+                <p>Confidence: {props.confidenceThreshold}</p>
+                <hr/>
+                <p>Gefilterter Liste aus der DB:</p>
+                {fullImageList.filter((val) => {
+                    if(props.filter == ""){
+                        return val;
+                    }else if (val.name.toLowerCase().includes(props.filter.toLowerCase())){
+                        return val;
+                    }
+                }).map((val,key) => {
+                    return (
+                        <div>
+                            <p>{val.name}</p>
+                        </div>);
+                })}
 
-            <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-                {itemData.map((item) => (
-                    <ImageListItem key={item.img}>
-                        <img
-                            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format 1x,
+                <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+                    {itemData.map((item) => (
+                        <ImageListItem key={item.img}>
+                            <img
+                                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format 1x,
                 ${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                            alt={item.title}
-                            loading="lazy"
-                        />
-                    </ImageListItem>
-                ))}
-            </ImageList>
-        </div>
-
-);
+                                alt={item.title}
+                                loading="lazy"
+                            />
+                        </ImageListItem>
+                    ))}
+                </ImageList>
+            </div>
+        );
+    // }
 }
 
 
@@ -61,7 +61,7 @@ export default function StandardImageList(props) {
 
 const itemData = [
     {
-        img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+        img: 'C:/Tierschutz/a.jpg',
         title: 'Breakfast',
     },
     {

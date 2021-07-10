@@ -4,7 +4,6 @@ import { Grid, Paper } from "@material-ui/core";
 import Header from "./components/Header";
 import {green, lightGreen, orange} from "@material-ui/core/colors";
 import StandardImageList from "./components/StandardImageList";
-import AddConcept from "./components/AddConcept";
 import {useState} from "react";
 import Searchbar from "./components/Searchbar";
 import ConfidenceSlider from "./components/ConfidenceSlider";
