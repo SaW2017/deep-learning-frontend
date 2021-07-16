@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Slider, StepLabel, Typography} from "@material-ui/core";
+import {Slider, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
 const sliderStyle = makeStyles({

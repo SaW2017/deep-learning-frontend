@@ -8,16 +8,18 @@ export default function StandardImageList(props) {
 
     const [fullImageList, setFullImageList] = useState([]);
 
-    // initial get all Images
     useEffect(() => {
         try{
-            Axios.get("http://localhost:3002/concepts").then((response) => {
+             Axios.get("http://localhost:3002/testDB?concept="+ props.filter + "&confidence=" + props.confidenceThreshold , {
+            }).then((response) => {
                 setFullImageList(response.data);
-            })
+                console.log(response.data);
+            });
         }catch (e) {
             console.log(e);
         }
-    }, [fullImageList])
+    }, [props.filter, props.confidenceThreshold])
+
 
     return (
             <div>
@@ -26,20 +28,24 @@ export default function StandardImageList(props) {
                 <p>Confidence: {props.confidenceThreshold}</p>
                 <hr/>
                 <p>Gefilterter Liste aus der DB:</p>
-                {fullImageList.filter((val) => {
-                    if(props.filter == ""){
-                        return val;
-                    }else if (val.name.toLowerCase().includes(props.filter.toLowerCase())){
-                        return val;
-                    }
-                }).map((val,key) => {
-                    return (
-                        <div>
-                            <p>{val.name}</p>
-                        </div>);
-                })}
+
+
 
                 <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+                    {fullImageList.map((img) => (
+                        <ImageListItem key={img.filepath}>
+                            <img
+                                srcSet={`${img.filepath}?w=164&h=164&fit=crop&auto=format 1x,
+                ${img.filepath}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                                alt={img.filepath}
+                                loading="lazy"
+                            />
+                        </ImageListItem>
+                    ))}
+                </ImageList>
+
+
+               {/* <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
                     {itemData.map((item) => (
                         <ImageListItem key={item.img}>
                             <img
@@ -50,12 +56,30 @@ export default function StandardImageList(props) {
                             />
                         </ImageListItem>
                     ))}
-                </ImageList>
+                </ImageList>*/}
             </div>
         );
-    // }
 }
 
+{/*{fullImageList.map((val, key) => {
+                    return (
+                        <div>
+                            <p>{val}</p>
+                        </div>);
+                })}*/}
+
+{/*{fullImageList.filter((val) => {
+                    if(props.filter == ""){
+                        return val;
+                    }else if (val.name.toLowerCase().includes(props.filter.toLowerCase())){
+                        return val;
+                    }
+                }).map((val,key) => {
+                    return (
+                        <div>
+                            <p>{val.name}</p>
+                        </div>);
+                })}*/}
 
 
 

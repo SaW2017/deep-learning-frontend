@@ -1,8 +1,8 @@
 import "./App.css";
-import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider, createTheme } from "@material-ui/core/styles";
 import { Grid, Paper } from "@material-ui/core";
 import Header from "./components/Header";
-import {green, lightGreen, orange} from "@material-ui/core/colors";
+import {green, orange} from "@material-ui/core/colors";
 import StandardImageList from "./components/StandardImageList";
 import {useState} from "react";
 import Searchbar from "./components/Searchbar";
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const customTheme = createMuiTheme({
+const customTheme = createTheme({
     palette: {
         type: 'dark',
         primary: {
@@ -57,7 +57,7 @@ function App() {
                             container
                             spacing={1}
                             direction="column"
-                            justify="flex-start"
+                            justifyContent="flex-start"
                             alignItems="stretch">
                             <Grid item>
                                 <Paper>
