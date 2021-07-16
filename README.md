@@ -1,7 +1,7 @@
 # Getting Started with Create React App
 
 Download Repo & then open the terminal and run:
-``` npm install ```
+### ` npm install `
 
 Don't forget to start the server first (Repo: deep-learning-api).
 
