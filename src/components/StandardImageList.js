@@ -23,11 +23,11 @@ export default function StandardImageList(props) {
 
     return (
             <div>
-                <p>Eingaben:</p>
+                <p>Input:</p>
                 <p>Filter: {props.filter}</p>
                 <p>Confidence: {props.confidenceThreshold}</p>
                 <hr/>
-                <p>Gefilterter Liste aus der DB:</p>
+                <p>Filtered Images:</p>
 
 
 
