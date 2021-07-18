@@ -1,6 +1,6 @@
 import "./App.css";
-import { makeStyles, ThemeProvider, createTheme } from "@material-ui/core/styles";
-import { Grid, Paper } from "@material-ui/core";
+import {makeStyles, ThemeProvider, createTheme} from "@material-ui/core/styles";
+import {Grid, Paper} from "@material-ui/core";
 import Header from "./components/Header";
 import {green, orange} from "@material-ui/core/colors";
 import StandardImageList from "./components/StandardImageList";
@@ -10,15 +10,15 @@ import ConfidenceSlider from "./components/ConfidenceSlider";
 import ImageInformation from "./components/ImageInformation";
 
 const useStyles = makeStyles((theme) => ({
-    root:{
+    root: {
         marginBottom: 15,
         borderRadius: 15,
     },
-    grid:{
+    grid: {
         width: '100%',
         margin: '0px'
     },
-    paper:{
+    paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.primary,
@@ -32,7 +32,7 @@ const customTheme = createTheme({
         primary: {
             main: orange[500],
         },
-        secondary:{
+        secondary: {
             main: green[500]
         }
     }
@@ -40,8 +40,8 @@ const customTheme = createTheme({
 
 function App() {
     const classes = useStyles();
-    const [filter, setFilter]  = useState("");
-    const [confidenceThreshold, setConfidenceThreshold]  = useState();
+    const [filter, setFilter] = useState("");
+    const [confidenceThreshold, setConfidenceThreshold] = useState();
 
     return (
         <ThemeProvider theme={customTheme}>
@@ -71,13 +71,13 @@ function App() {
                             </Grid>
                             <Grid item>
                                 <Paper>
-                                    <ImageInformation />
+                                    <ImageInformation/>
                                 </Paper>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={7}>
-                       <StandardImageList filter={filter} confidenceThreshold={confidenceThreshold}/>
+                        <StandardImageList filter={filter} confidenceThreshold={confidenceThreshold}/>
                     </Grid>
                 </Grid>
             </div>
