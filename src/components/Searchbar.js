@@ -13,7 +13,8 @@ const searchbarStyle = makeStyles({
     },
     button: {
         width: "inherit",
-        padding: "20px"
+        marginTop: "15px",
+        padding: "15px"
     }
 });
 
@@ -37,7 +38,7 @@ const Searchbar = (props) => {
                            setConceptValue(eventValue);
                        }}
             />
-            <Button type={"submit"} color={"primary"} onClick={() => {
+            <Button type={"submit"} className={classes.button} color={"primary"} onClick={() => {
                 props.setFilter(conceptValue);
             }
             }>Search</Button>
