@@ -1,6 +1,6 @@
 import "./App.css";
 import {makeStyles, ThemeProvider, createTheme} from "@material-ui/core/styles";
-import {Grid, Paper} from "@material-ui/core";
+import {Button, Grid, Paper} from "@material-ui/core";
 import Header from "./components/Header";
 import {green, orange} from "@material-ui/core/colors";
 import StandardImageList from "./components/StandardImageList";
@@ -40,8 +40,13 @@ const customTheme = createTheme({
 
 function App() {
     const classes = useStyles();
+    // hooks used in this class
     const [filter, setFilter] = useState("");
     const [confidenceThreshold, setConfidenceThreshold] = useState();
+
+    // hooks used to call events in child components
+    const [searchbarValue, setSearchbarValue] = useState('');
+    const [confidenceSliderValue, setConfidenceSliderValue] = useState([0.5, 0.95]);
 
     return (
         <ThemeProvider theme={customTheme}>
@@ -61,12 +66,26 @@ function App() {
                             alignItems="stretch">
                             <Grid item>
                                 <Paper>
-                                    <Searchbar setFilter={setFilter}/>
+                                    <Searchbar setFilter={setFilter} setSearchbarValue={setSearchbarValue}/>
+                                </Paper>
+                                <Paper>
+                                    <Button
+                                        type={"submit"}
+                                        variant={"outlined"}
+                                        color={"primary"}
+                                        onClick={() => {
+                                            setFilter(searchbarValue);
+                                            setConfidenceThreshold(confidenceSliderValue);
+
+                                        }
+                                        }>Search</Button>
                                 </Paper>
                             </Grid>
                             <Grid item>
                                 <Paper>
-                                    <ConfidenceSlider setConfidenceThreshold={setConfidenceThreshold}/>
+                                    <ConfidenceSlider
+                                        setConfidenceSliderValue={setConfidenceSliderValue}
+                                    />
                                 </Paper>
                             </Grid>
                             <Grid item>
