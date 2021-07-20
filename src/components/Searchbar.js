@@ -1,4 +1,4 @@
-import {Typography, Button} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from "@material-ui/core/styles";
 import {useState} from "react";
@@ -18,7 +18,7 @@ const searchbarStyle = makeStyles({
     }
 });
 
-const Searchbar = (props) => {
+const Searchbar = ({setSearchbarValue}) => {
     const classes = searchbarStyle();
     const [conceptValue, setConceptValue] = useState("");
 
@@ -33,15 +33,10 @@ const Searchbar = (props) => {
                        value={conceptValue}
                        onChange={event => {
                            var eventValue = event.target.value;
-                           console.log("Searchbar");
-                           console.log(eventValue);
                            setConceptValue(eventValue);
+                           setSearchbarValue(eventValue);
                        }}
             />
-            <Button type={"submit"} className={classes.button} color={"primary"} onClick={() => {
-                props.setFilter(conceptValue);
-            }
-            }>Search</Button>
         </div>
 
     );
