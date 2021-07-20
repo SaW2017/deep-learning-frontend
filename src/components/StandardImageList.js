@@ -25,7 +25,7 @@ export default function StandardImageList(props) {
             <div>
                 <p>Input:</p>
                 <p>Filter: {props.filter}</p>
-                <p>Confidence: {props.confidenceThreshold}</p>
+                <p>Confidence: {`${props.confidenceThreshold[0]} -- ${props.confidenceThreshold[1]}`}</p>
                 <hr/>
                 <p>Filtered Images:</p>
 
