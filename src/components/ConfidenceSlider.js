@@ -9,13 +9,14 @@ const sliderStyle = makeStyles({
     }
 });
 
-const ConfidenceSlider = (props) => {
+const ConfidenceSlider = ({setConfidenceSliderValue}) => {
     const classes = sliderStyle();
     const [value, setValue] = useState([0.5, 0.95]);
     const getText = (value) => `${value}`;
+
     const changeValue = (event, value) => {
         setValue(value);
-        props.setConfidenceThreshold(value);
+        setConfidenceSliderValue(value);
     };
 
     const customMarks = [
@@ -43,17 +44,17 @@ const ConfidenceSlider = (props) => {
 
     return (
         <div className={classes.confidenceSlider}>
-            <Typography>Confidence Intervall:</Typography>
-           <Slider
-               value={value}
-               onChange={changeValue}
-               min={0}
-               max={1}
-               step={0.05}
-               marks={customMarks}
-               getAriaValueText={getText}
-               valueLabelDisplay= "auto"
-           />
+            <Typography>Confidence Interval:</Typography>
+            <Slider
+                value={value}
+                onChange={changeValue}
+                min={0}
+                max={1}
+                step={0.05}
+                marks={customMarks}
+                getAriaValueText={getText}
+                valueLabelDisplay="auto"
+            />
         </div>
     );
 }
