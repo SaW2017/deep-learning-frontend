@@ -29,8 +29,6 @@ export default function StandardImageList(props) {
                 <hr/>
                 <p>Filtered Images:</p>
 
-
-
                 <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
                     {fullImageList.map((img) => (
                         <ImageListItem key={img.filepath}>
