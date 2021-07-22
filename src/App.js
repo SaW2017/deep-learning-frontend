@@ -7,7 +7,6 @@ import StandardImageList from "./components/StandardImageList";
 import {useState} from "react";
 import Searchbar from "./components/Searchbar";
 import ConfidenceSlider from "./components/ConfidenceSlider";
-import ImageInformation from "./components/ImageInformation";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,13 +39,9 @@ const customTheme = createTheme({
 
 function App() {
     const classes = useStyles();
-    // hooks used in this class
-    const [filter, setFilter] = useState("");
-    const [confidenceThreshold, setConfidenceThreshold] = useState();
-
     // hooks used to call events in child components
     const [searchbarValue, setSearchbarValue] = useState('');
-    const [confidenceSliderValue, setConfidenceSliderValue] = useState([0.5, 0.95]);
+    const [confidenceThreshold, setConfidenceThreshold] = useState([0.5, 0.95]);
 
     return (
         <ThemeProvider theme={customTheme}>
@@ -66,37 +61,35 @@ function App() {
                             alignItems="stretch">
                             <Grid item>
                                 <Paper>
-                                    <Searchbar setFilter={setFilter} setSearchbarValue={setSearchbarValue}/>
+                                    <Searchbar setSearchbarValue={setSearchbarValue}/>
                                 </Paper>
+                            </Grid>
+                            <Grid item>
+                                <Paper>
+                                    <ConfidenceSlider
+                                        setConfidenceThreshold={setConfidenceThreshold}
+                                    />
+                                </Paper>
+                            </Grid>
+                            <Grid item>
                                 <Paper>
                                     <Button
                                         type={"submit"}
                                         variant={"outlined"}
                                         color={"primary"}
                                         onClick={() => {
-                                            setFilter(searchbarValue);
-                                            setConfidenceThreshold(confidenceSliderValue);
+                                            setSearchbarValue(searchbarValue);
+                                            setConfidenceThreshold(confidenceThreshold);
 
                                         }
                                         }>Search</Button>
                                 </Paper>
                             </Grid>
-                            <Grid item>
-                                <Paper>
-                                    <ConfidenceSlider
-                                        setConfidenceSliderValue={setConfidenceSliderValue}
-                                    />
-                                </Paper>
-                            </Grid>
-                            <Grid item>
-                                <Paper>
-                                    <ImageInformation/>
-                                </Paper>
-                            </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={7}>
-                        <StandardImageList filter={filter} confidenceThreshold={confidenceThreshold}/>
+                        <StandardImageList/>
+                        {/*<StandardImageList searchbarValue={searchbarValue} confidenceThreshold={confidenceThreshold}/>*/}
                     </Grid>
                 </Grid>
             </div>
