@@ -9,14 +9,13 @@ const sliderStyle = makeStyles({
     }
 });
 
-const ConfidenceSlider = ({setConfidenceSliderValue}) => {
+const ConfidenceSlider = ({setConfidenceThreshold}) => {
     const classes = sliderStyle();
-    const [value, setValue] = useState([0.5, 0.95]);
+    const [value] = useState([0.5, 0.95]);
     const getText = (value) => `${value}`;
 
     const changeValue = (event, value) => {
-        setValue(value);
-        setConfidenceSliderValue(value);
+        setConfidenceThreshold(value);
     };
 
     const customMarks = [

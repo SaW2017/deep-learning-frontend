@@ -43,5 +43,3 @@ const Searchbar = ({setSearchbarValue}) => {
 }
 
 export default Searchbar;
-
-

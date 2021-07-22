@@ -8,7 +8,7 @@ export default function StandardImageList(props) {
 
     const [fullImageList, setFullImageList] = useState([]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         try{
              Axios.get("http://localhost:3002/testDB?concept="+ props.filter + "&confidence=" + props.confidenceThreshold , {
             }).then((response) => {
@@ -18,14 +18,25 @@ export default function StandardImageList(props) {
         }catch (e) {
             console.log(e);
         }
-    }, [props.filter, props.confidenceThreshold])
+    }, [props.filter, props.confidenceThreshold])*/
+
+    useEffect(() => {
+        try{
+            Axios.get("http://localhost:3002/find", {
+            }).then((response) => {
+                console.log(response.data);
+            });
+        }catch (e) {
+            console.log(e);
+        }
+    }, [])
 
 
     return (
             <div>
                 <p>Input:</p>
-                <p>Filter: {props.filter}</p>
-                <p>Confidence: {`${props.confidenceThreshold[0]} -- ${props.confidenceThreshold[1]}`}</p>
+               {/* <p>Filter: {props.searchbarValue}</p>
+                <p>Confidence: {`${props.confidenceThreshold[0]} -- ${props.confidenceThreshold[1]}`}</p>*/}
                 <hr/>
                 <p>Filtered Images:</p>
 
