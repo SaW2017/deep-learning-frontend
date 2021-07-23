@@ -11,13 +11,13 @@ function StandardImageList(props, ref) {
 
     useImperativeHandle(ref, () => ({
         updateApiRequest(searchbarValue, confidenceThreshold){
-            setApicall(`http://localhost:3002/find?conceptname=${searchbarValue}&confidencevalues=${confidenceThreshold}`);
+            setApicall(`http://localhost:3002/filter?concept=${searchbarValue}&confidence=${confidenceThreshold}`);
         }
     }), []);
 
-    /*useEffect(() => {
+    useEffect(() => {
         try{
-             Axios.get("http://localhost:3002/testDB?concept="+ props.filter + "&confidence=" + props.confidenceThreshold , {
+             Axios.get(apicall , {
             }).then((response) => {
                 setFullImageList(response.data);
                 console.log(response.data);
@@ -25,24 +25,13 @@ function StandardImageList(props, ref) {
         }catch (e) {
             console.log(e);
         }
-    }, [props.filter, props.confidenceThreshold])*/
-
-    useEffect(() => {
-        try{
-            Axios.get("http://localhost:3002/find", {
-            }).then((response) => {
-                console.log(response.data);
-            });
-        }catch (e) {
-            console.log(e);
-        }
-    }, [])
-
+    }, [apicall])
 
     return (
             <div>
                 <p>Input:</p>
                 {apicall}
+
                {/* <p>Filter: {props.searchbarValue}</p>
                 <p>Confidence: {`${props.confidenceThreshold[0]} -- ${props.confidenceThreshold[1]}`}</p>*/}
                 <hr/>
