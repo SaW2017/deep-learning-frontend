@@ -11,10 +11,11 @@ const sliderStyle = makeStyles({
 
 const ConfidenceSlider = ({setConfidenceThreshold}) => {
     const classes = sliderStyle();
-    const [value] = useState([0.5, 0.95]);
+    const [value, setValue] = useState([0.5, 0.95]);
     const getText = (value) => `${value}`;
 
     const changeValue = (event, value) => {
+        setValue(value);
         setConfidenceThreshold(value);
     };
 

@@ -4,7 +4,7 @@ import {Button, Grid, Paper} from "@material-ui/core";
 import Header from "./components/Header";
 import {green, orange} from "@material-ui/core/colors";
 import StandardImageList from "./components/StandardImageList";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import Searchbar from "./components/Searchbar";
 import ConfidenceSlider from "./components/ConfidenceSlider";
 
@@ -42,6 +42,13 @@ function App() {
     // hooks used to call events in child components
     const [searchbarValue, setSearchbarValue] = useState('');
     const [confidenceThreshold, setConfidenceThreshold] = useState([0.5, 0.95]);
+    const urlref = useRef("http://localhost:3002/find");
+
+    const urlChange = e => {
+        setSearchbarValue(searchbarValue);
+        setConfidenceThreshold(confidenceThreshold);
+        urlref.current.updateApiRequest(searchbarValue, confidenceThreshold);
+    }
 
     return (
         <ThemeProvider theme={customTheme}>
@@ -77,18 +84,19 @@ function App() {
                                         type={"submit"}
                                         variant={"outlined"}
                                         color={"primary"}
-                                        onClick={() => {
+                                        onClick={urlChange}
+                                       /* onClick={() => {
                                             setSearchbarValue(searchbarValue);
                                             setConfidenceThreshold(confidenceThreshold);
 
-                                        }
-                                        }>Search</Button>
+                                        }}*/
+                                        >Search</Button>
                                 </Paper>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={7}>
-                        <StandardImageList/>
+                        <StandardImageList  ref={urlref} />
                         {/*<StandardImageList searchbarValue={searchbarValue} confidenceThreshold={confidenceThreshold}/>*/}
                     </Grid>
                 </Grid>

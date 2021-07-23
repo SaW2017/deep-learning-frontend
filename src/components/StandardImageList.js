@@ -2,11 +2,18 @@ import * as React from 'react';
 import Axios from "axios";
 import { ImageList } from '@material-ui/core';
 import ImageListItem from '@material-ui/core/ImageListItem';
-import {useEffect, useState} from "react";
+import {useEffect, useImperativeHandle, useState, forwardRef} from "react";
 
-export default function StandardImageList(props) {
+function StandardImageList(props, ref) {
 
     const [fullImageList, setFullImageList] = useState([]);
+    const [apicall, setApicall] = useState("http://localhost:3002/find");
+
+    useImperativeHandle(ref, () => ({
+        updateApiRequest(searchbarValue, confidenceThreshold){
+            setApicall(`http://localhost:3002/find?conceptname=${searchbarValue}&confidencevalues=${confidenceThreshold}`);
+        }
+    }), []);
 
     /*useEffect(() => {
         try{
@@ -35,6 +42,7 @@ export default function StandardImageList(props) {
     return (
             <div>
                 <p>Input:</p>
+                {apicall}
                {/* <p>Filter: {props.searchbarValue}</p>
                 <p>Confidence: {`${props.confidenceThreshold[0]} -- ${props.confidenceThreshold[1]}`}</p>*/}
                 <hr/>
@@ -69,6 +77,8 @@ export default function StandardImageList(props) {
             </div>
         );
 }
+
+export default forwardRef(StandardImageList)
 
 {/*{fullImageList.map((val, key) => {
                     return (
