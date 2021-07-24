@@ -1,57 +1,58 @@
 import * as React from 'react';
 import Axios from "axios";
-import { ImageList } from '@material-ui/core';
+import {ImageList} from '@material-ui/core';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import {useEffect, useImperativeHandle, useState, forwardRef} from "react";
 
 function StandardImageList(props, ref) {
 
     const [fullImageList, setFullImageList] = useState([]);
-    const [apicall, setApicall] = useState("http://localhost:3002/find");
+    const [apiCall, setApiCall] = useState("http://localhost:3002/find");
 
     useImperativeHandle(ref, () => ({
-        updateApiRequest(searchbarValue, confidenceThreshold){
-            setApicall(`http://localhost:3002/filter?concept=${searchbarValue}&confidence=${confidenceThreshold}`);
+        updateApiRequest(searchbarValue, confidenceThreshold) {
+            setApiCall(`http://localhost:3002/filter?concept=${searchbarValue}&confidence=${confidenceThreshold}`);
         }
     }), []);
 
     useEffect(() => {
-        try{
-             Axios.get(apicall , {
-            }).then((response) => {
+        try {
+            Axios.get(apiCall, {}).then((response) => {
                 setFullImageList(response.data);
                 console.log(response.data);
             });
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
-    }, [apicall])
+    }, [apiCall])
 
     return (
-            <div>
-                <p>Input:</p>
-                {apicall}
+        <div>
+            <p>Input:</p>
+            {apiCall}
 
-               {/* <p>Filter: {props.searchbarValue}</p>
+            {/*<p>Test: {fullImageList}</p>*/}
+            {/* <p>Filter: {props.searchbarValue}</p>
                 <p>Confidence: {`${props.confidenceThreshold[0]} -- ${props.confidenceThreshold[1]}`}</p>*/}
-                <hr/>
-                <p>Filtered Images:</p>
+            <hr/>
+            <p>Filtered Images:</p>
 
-                <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-                    {fullImageList.map((img) => (
-                        <ImageListItem key={img.filepath}>
-                            <img
-                                srcSet={`${img.filepath}?w=164&h=164&fit=crop&auto=format 1x,
-                ${img.filepath}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                alt={img.filepath}
-                                loading="lazy"
-                            />
-                        </ImageListItem>
-                    ))}
-                </ImageList>
+            <ImageList sx={{width: 500, height: 450}} cols={3} rowHeight={164}>
+                {fullImageList.map((img) => (
+                    <ImageListItem key={img._id}>
+                        <img
+                //             srcSet={`images/${img.file_path}/${img.keyframe_id}?w=164&h=164&fit=crop&auto=format 1x,
+                // ${img.file_path}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                            src={`images/${img.file_path}/${img.keyframe_id}`}
+                            alt={img.file_path}
+                            loading="lazy"
+                        />
+                    </ImageListItem>
+                ))}
+            </ImageList>
 
 
-               {/* <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+            {/* <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
                     {itemData.map((item) => (
                         <ImageListItem key={item.img}>
                             <img
@@ -63,8 +64,8 @@ function StandardImageList(props, ref) {
                         </ImageListItem>
                     ))}
                 </ImageList>*/}
-            </div>
-        );
+        </div>
+    );
 }
 
 export default forwardRef(StandardImageList)
@@ -74,7 +75,8 @@ export default forwardRef(StandardImageList)
                         <div>
                             <p>{val}</p>
                         </div>);
-                })}*/}
+                })}*/
+}
 
 {/*{fullImageList.filter((val) => {
                     if(props.filter == ""){
@@ -87,57 +89,57 @@ export default forwardRef(StandardImageList)
                         <div>
                             <p>{val.name}</p>
                         </div>);
-                })}*/}
+                })}*/
+}
 
 
-
-const itemData = [
-    {
-        img: 'C:/Tierschutz/a.jpg',
-        title: 'Breakfast',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-        title: 'Burger',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-        title: 'Camera',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-        title: 'Coffee',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-        title: 'Hats',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-        title: 'Honey',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-        title: 'Basketball',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-        title: 'Fern',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-        title: 'Mushrooms',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-        title: 'Tomato basil',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-        title: 'Sea star',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-        title: 'Bike',
-    },
-];
+// const itemData = [
+//     {
+//         img: 'C:/Tierschutz/a.jpg',
+//         title: 'Breakfast',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+//         title: 'Burger',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+//         title: 'Camera',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+//         title: 'Coffee',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+//         title: 'Hats',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+//         title: 'Honey',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+//         title: 'Basketball',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+//         title: 'Fern',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+//         title: 'Mushrooms',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+//         title: 'Tomato basil',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+//         title: 'Sea star',
+//     },
+//     {
+//         img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+//         title: 'Bike',
+//     },
+// ];
