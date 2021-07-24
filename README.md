@@ -3,13 +3,15 @@
 Download Repo & then open the terminal and run:
 ### ` npm install `
 
-Don't forget to start the server first (Repo: deep-learning-api).
+Don't forget to start the server first (Repo: `deep-learning-api`).
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### Start the front end with `yarn`
+
+Execute the command `yarn start` in the root folder `deep-learning-frontend` of this project.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
