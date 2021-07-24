@@ -42,12 +42,12 @@ function App() {
     // hooks used to call events in child components
     const [searchbarValue, setSearchbarValue] = useState('');
     const [confidenceThreshold, setConfidenceThreshold] = useState([0.5, 0.95]);
-    const urlref = useRef("http://localhost:3002/find");
+    const urlPath = useRef("http://localhost:3002/find");
 
-    const urlChange = e => {
+    const urlChange = () => {
         setSearchbarValue(searchbarValue);
         setConfidenceThreshold(confidenceThreshold);
-        urlref.current.updateApiRequest(searchbarValue, confidenceThreshold);
+        urlPath.current.updateApiRequest(searchbarValue, confidenceThreshold);
     }
 
     return (
@@ -85,18 +85,13 @@ function App() {
                                         variant={"outlined"}
                                         color={"primary"}
                                         onClick={urlChange}
-                                       /* onClick={() => {
-                                            setSearchbarValue(searchbarValue);
-                                            setConfidenceThreshold(confidenceThreshold);
-
-                                        }}*/
                                         >Search</Button>
                                 </Paper>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={7}>
-                        <StandardImageList  ref={urlref} />
+                        <StandardImageList  ref={urlPath} />
                         {/*<StandardImageList searchbarValue={searchbarValue} confidenceThreshold={confidenceThreshold}/>*/}
                     </Grid>
                 </Grid>
