@@ -4,7 +4,6 @@ import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import {useEffect, useImperativeHandle, useState, forwardRef} from "react";
-import {Grid} from "@material-ui/core";
 
 function StandardImageList(props, ref) {
 
@@ -30,11 +29,7 @@ function StandardImageList(props, ref) {
 
     return (
         <div>
-          {/*  {apiCall}
-            <p>Filter: {props.searchbarValue}</p>
-            <p>Confidence: {`${props.confidenceThreshold[0]} -- ${props.confidenceThreshold[1]}`}</p>
-           */}
-            {fullImageList.length? 'Bilder vorhanden': 'nicht vorhanden'}
+           <p style={{color: "white"}}>{fullImageList.length? fullImageList.length + ' Images found' : 'No images found with Concept: "' + props.searchbarValue + '" and Confidence-Intervall [' + props.confidenceThreshold[0] + ',' + props.confidenceThreshold[1] + ']'} </p>
            <ImageList sx={{width: 500, height: 450}} cols={3} rowHeight={164}>
                 {fullImageList.map((img) => (
                     <ImageListItem key={img._id}>

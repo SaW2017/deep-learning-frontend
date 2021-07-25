@@ -95,7 +95,7 @@ function App() {
                         <hr/>
                         <p style={{color: "orange"}}>Classifier and Top 3 Concepts + normalized Confidence (only >0.009):</p>
                         <hr/>
-                        <StandardImageList  ref={urlPath} />
+                        <StandardImageList ref={urlPath} searchbarValue={searchbarValue} confidenceThreshold={confidenceThreshold}/>
                     </Grid>
                 </Grid>
             </div>
