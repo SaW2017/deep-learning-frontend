@@ -1,8 +1,10 @@
 import * as React from 'react';
 import Axios from "axios";
-import {ImageList} from '@material-ui/core';
+import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import {useEffect, useImperativeHandle, useState, forwardRef} from "react";
+import {Grid} from "@material-ui/core";
 
 function StandardImageList(props, ref) {
 
@@ -28,118 +30,39 @@ function StandardImageList(props, ref) {
 
     return (
         <div>
-            <p>Input:</p>
-            {apiCall}
-
-            {/*<p>Test: {fullImageList}</p>*/}
-            {/* <p>Filter: {props.searchbarValue}</p>
-                <p>Confidence: {`${props.confidenceThreshold[0]} -- ${props.confidenceThreshold[1]}`}</p>*/}
-            <hr/>
-            <p>Filtered Images:</p>
-
-            <ImageList sx={{width: 500, height: 450}} cols={3} rowHeight={164}>
+          {/*  {apiCall}
+            <p>Filter: {props.searchbarValue}</p>
+            <p>Confidence: {`${props.confidenceThreshold[0]} -- ${props.confidenceThreshold[1]}`}</p>
+           */}
+            {fullImageList.length? 'Bilder vorhanden': 'nicht vorhanden'}
+           <ImageList sx={{width: 500, height: 450}} cols={3} rowHeight={164}>
                 {fullImageList.map((img) => (
                     <ImageListItem key={img._id}>
                         <img
-                //             srcSet={`images/${img.file_path}/${img.keyframe_id}?w=164&h=164&fit=crop&auto=format 1x,
-                // ${img.file_path}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                             src={`images/${img.file_path}/${img.keyframe_id}`}
                             alt={img.file_path}
                             loading="lazy"
                         />
+                        <ImageListItemBar
+                            title={<span>{img.classifier.charAt(0).toUpperCase() + img.classifier.slice(1)}</span>}
+                            subtitle={<span>
+                                {typeof(img.concept_confidence[0]) !== 'undefined'?
+                                    img.concept_confidence[0].concept.slice(0, -1) +' ('+ img.concept_confidence[0].confidence.toFixed(3) +')'
+                                    : 'No 1st Concept'} <br/>
+                                {typeof(img.concept_confidence[1]) !== 'undefined'?
+                                    img.concept_confidence[1].concept.slice(0, -1) +' ('+ img.concept_confidence[1].confidence.toFixed(3) +')'
+                                    : 'No 2nd Concept'} <br/>
+                                {typeof(img.concept_confidence[2]) !== 'undefined'?
+                                    img.concept_confidence[2].concept.slice(0, -1) +' ('+ img.concept_confidence[2].confidence.toFixed(3) +')'
+                                    : 'No 3rd Concept'}
+                            </span>}
+                            position="bottom"
+                        />
                     </ImageListItem>
                 ))}
             </ImageList>
-
-
-            {/* <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-                    {itemData.map((item) => (
-                        <ImageListItem key={item.img}>
-                            <img
-                                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format 1x,
-                ${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                alt={item.title}
-                                loading="lazy"
-                            />
-                        </ImageListItem>
-                    ))}
-                </ImageList>*/}
         </div>
     );
 }
 
 export default forwardRef(StandardImageList)
-
-{/*{fullImageList.map((val, key) => {
-                    return (
-                        <div>
-                            <p>{val}</p>
-                        </div>);
-                })}*/
-}
-
-{/*{fullImageList.filter((val) => {
-                    if(props.filter == ""){
-                        return val;
-                    }else if (val.name.toLowerCase().includes(props.filter.toLowerCase())){
-                        return val;
-                    }
-                }).map((val,key) => {
-                    return (
-                        <div>
-                            <p>{val.name}</p>
-                        </div>);
-                })}*/
-}
-
-
-// const itemData = [
-//     {
-//         img: 'C:/Tierschutz/a.jpg',
-//         title: 'Breakfast',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-//         title: 'Burger',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-//         title: 'Camera',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-//         title: 'Coffee',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-//         title: 'Hats',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-//         title: 'Honey',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-//         title: 'Basketball',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-//         title: 'Fern',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-//         title: 'Mushrooms',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-//         title: 'Tomato basil',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-//         title: 'Sea star',
-//     },
-//     {
-//         img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-//         title: 'Bike',
-//     },
-// ];
